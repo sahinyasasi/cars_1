@@ -31,11 +31,12 @@ MongoClient.connect("mongodb://localhost:27017/carsDB", {
     app.put("/cars", (req, res) => {
       karsCollection
         .findOneAndUpdate(
-          { name: "Yoda" },
+          { brand: "Yoda" },
           {
             $set: {
-              name: req.body.name,
-              quote: req.body.quote,
+              brand: req.body.brand,
+              model: req.body.model,
+              variant: req.body.variant,
             },
           },
           {

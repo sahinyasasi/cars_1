@@ -1,12 +1,13 @@
 const update = document.querySelector("#update-button");
 
-update.addEventListener("click", (_) => {
+update.addEventListener("click", (req, res) => {
   fetch("/cars", {
     method: "put",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      name: "Darth Vadar",
-      quote: "I find your lack of faith disturbing.",
+      brand: "123",
+      model: "123",
+      variant: "123",
     }),
   })
     .then((res) => {
