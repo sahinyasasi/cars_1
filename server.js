@@ -60,19 +60,14 @@ MongoClient.connect("mongodb://localhost:27017/carsDB", {
     });
 
     app.post("/cars", (req, res) => {
-      karsCollection.find(req.body, (err, foundresults) => {
-        if (err) {
-          karsCollection
-            .insertOne(req.body)
-            .then((result) => {
-              res.redirect("/");
-            })
-            .catch((error) => console.error(error));
-        } else {
+      karsCollection
+        .insertOne(req.body)
+        .then((result) => {
           res.redirect("/");
-        }
-      });
+        })
+        .catch((error) => console.error(error));
     });
+
     app.listen(3000, function () {
       console.log("listening on 3000");
     });
