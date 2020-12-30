@@ -1,6 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+var expressValidator = require("express-validator");
 const MongoClient = require("mongodb").MongoClient;
+
 const app = express();
 app.set("view engine", "ejs");
 app.use(bodyParser.json());
@@ -31,7 +33,11 @@ MongoClient.connect("mongodb://localhost:27017/carsDB", {
     app.put("/cars", (req, res) => {
       karsCollection
         .findOneAndUpdate(
-          { brand: "Yoda" },
+          {
+            brand: req.body.brand,
+            model: req.body.model,
+            variant: req.body.variant,
+          },
           {
             $set: {
               brand: req.body.brand,
@@ -54,12 +60,18 @@ MongoClient.connect("mongodb://localhost:27017/carsDB", {
     });
 
     app.post("/cars", (req, res) => {
-      karsCollection
-        .insertOne(req.body)
-        .then((result) => {
+      karsCollection.find(req.body, (err, foundresults) => {
+        if (err) {
+          karsCollection
+            .insertOne(req.body)
+            .then((result) => {
+              res.redirect("/");
+            })
+            .catch((error) => console.error(error));
+        } else {
           res.redirect("/");
-        })
-        .catch((error) => console.error(error));
+        }
+      });
     });
     app.listen(3000, function () {
       console.log("listening on 3000");

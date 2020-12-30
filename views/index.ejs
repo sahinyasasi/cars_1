@@ -50,11 +50,12 @@
       />
 
       <datalist id="variants">
-        <% for(var i = 0; i < cars.length; i++) {%>
+        arr=[]; let brand=req.body.brand; <% for(var i = 0; i < cars.length;
+        i++) {%>
         <option><%= cars[i].brand %></option>
         <% } %>
       </datalist>
-      <button type="submit">Submit</button>
+      <button type="submit" id="submit">Submit</button>
     </form>
     <h2>cars</h2>
 

@@ -1,16 +1,14 @@
 const update = document.querySelector("#update-button");
+const submitBtn = document.querySelector("#submitBtn");
 
 update.addEventListener("click", (req, res) => {
-  if (req.body.brand) {
-    model.classlist.remove("hidden");
-  }
   fetch("/cars", {
     method: "put",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      brand: "123",
-      model: "123",
-      variant: "123",
+      brand: req.body.brand,
+      model: req.body.model,
+      variant: req.body.variant,
     }),
   })
     .then((res) => {
