@@ -17,8 +17,10 @@
         list="brands"
       />
       <datalist id="brands">
-        <% for(var i = 0; i < cars.length; i++) {%>
-        <option><%= cars[i].brand %></option>
+        <%let arr=[];%> <%for(let i=0;i< cars.length;i++){%>
+        <%if(!arr.includes(cars[i].brand)){%> <%arr.push(cars[i].brand);%>
+        <%}}%> <% for(var i = 0; i < arr.length; i++) {%>
+        <option><%= arr[i] %></option>
         <% } %>
       </datalist>
 
