@@ -31,38 +31,24 @@ MongoClient.connect("mongodb://localhost:27017/carsDB", {
     });
 
     app.put("/cars", (req, res) => {
-      karsCollection
-        .findOneAndUpdate(
-          {
-            brand: req.body.brand,
-            model: req.body.model,
-            variant: req.body.variant,
-          },
-          {
-            $set: {
-              brand: req.body.brand,
-              model: req.body.model,
-              variant: req.body.variant,
-            },
-          },
-          {
-            upsert: true,
-          }
-        )
-        .then((result) => {
-          res.json("success");
-        })
-        .catch((error) => console.error(error));
-    });
-
-    app.put("/cars", (req, res) => {
       console.log(req.body);
     });
     app.post("/variant", (req, res) => {
-      karsCollection
-        .insertOne(req.body)
-        .then((result) => {
-          res.redirect("/");
+      let ans = karsCollection
+        .find({ brand: req.body.brand, model: req.body.model })
+        .toArray()
+        .then((results) => {
+          if (results.length !== 0) {
+            karsCollection
+              .insertOne(req.body)
+              .then((result) => {
+                res.redirect("/");
+                console.log(results);
+              })
+              .catch((error) => console.error(error));
+          } else {
+            res.redirect("/");
+          }
         })
         .catch((error) => console.error(error));
     });
@@ -86,7 +72,29 @@ MongoClient.connect("mongodb://localhost:27017/carsDB", {
         })
         .catch((error) => console.error(error));
     });
-
+    app.post("/brand", (req, res) => {
+      let ans = karsCollection
+        .find({
+          brand: req.body.brand,
+          model: req.body.model,
+          variant: req.body.variant,
+        })
+        .toArray()
+        .then((results) => {
+          if (results.length === 0) {
+            karsCollection
+              .insertOne(req.body)
+              .then((result) => {
+                res.redirect("/");
+                console.log(results);
+              })
+              .catch((error) => console.error(error));
+          } else {
+            res.redirect("/");
+          }
+        })
+        .catch((error) => console.error(error));
+    });
     app.post("/cars", (req, res) => {
       karsCollection
         .insertOne(req.body)
