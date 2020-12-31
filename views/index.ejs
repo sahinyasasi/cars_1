@@ -96,6 +96,14 @@
       <% } %>
     </ul>
 </section>
+<section class="addedCar hidden">
+  
+  <%let j=cars.length %>
+  <p>"brand" :"<span><%= cars[j-1].brand %></span>"</p>
+  <p>"model" :"<span><%= cars[j-1].model %></span>"</p>
+  <p>"variant" :"<span><%= cars[j-1].variant %></span>"</p>
+ 
+</section>
     <script src="/main.js"></script>
   </body>
 </html>
