@@ -14,7 +14,7 @@
 <div class="container mt-5">
 <form action="/cars" method="POST" class="form-inline">
  
-    
+   <div>
     <input
         type="brand"
         name="brand"
@@ -71,6 +71,13 @@
       </datalist>
        
     <button type="submit" class="btn btn-success mb-2">Submit</button>
+    </div>
+    <div class="container">
+      <button type="submit" id="update-button1" class="btn btn-primary" formaction="/variant">add varinat</button>
+      <button type="submit" id="update-button2" class="btn btn-primary" formaction="/model">add model</button>
+      <button type="submit" id="update-button3" class="btn btn-primary" formaction="/brand">add brand</button>
+    </div>
+    
   </form>
   <h2>cars</h2>
 
@@ -85,11 +92,7 @@
       </li>
       <% } %>
     </ul>
-    <div>
-      <button id="update-button1" class="btn btn-primary">add varinat</button>
-      <button id="update-button2" class="btn btn-primary">add model</button>
-      <button id="update-button3" class="btn btn-primary">add brand</button>
-    </div>
+    
     <script src="/main.js"></script>
   </body>
 </html>

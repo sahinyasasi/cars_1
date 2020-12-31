@@ -58,6 +58,34 @@ MongoClient.connect("mongodb://localhost:27017/carsDB", {
     app.put("/cars", (req, res) => {
       console.log(req.body);
     });
+    app.post("/variant", (req, res) => {
+      karsCollection
+        .insertOne(req.body)
+        .then((result) => {
+          res.redirect("/");
+        })
+        .catch((error) => console.error(error));
+    });
+
+    app.post("/model", (req, res) => {
+      let ans = karsCollection
+        .find({ brand: req.body.brand })
+        .toArray()
+        .then((results) => {
+          if (results.length !== 0) {
+            karsCollection
+              .insertOne(req.body)
+              .then((result) => {
+                res.redirect("/");
+                console.log(results);
+              })
+              .catch((error) => console.error(error));
+          } else {
+            res.redirect("/");
+          }
+        })
+        .catch((error) => console.error(error));
+    });
 
     app.post("/cars", (req, res) => {
       karsCollection
