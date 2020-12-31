@@ -103,6 +103,16 @@ MongoClient.connect("mongodb://localhost:27017/carsDB", {
         })
         .catch((error) => console.error(error));
     });
+    app.post("/search", (req, res) => {
+      karsCollection
+        .find(req.body)
+        .toArray()
+        .then((results) => {
+          res.redirect("/");
+          console.log(results);
+        })
+        .catch((error) => console.error(error));
+    });
 
     app.listen(3000, function () {
       console.log("listening on 3000");
