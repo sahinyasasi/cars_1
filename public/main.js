@@ -25,7 +25,7 @@ update3.addEventListener("submit", (e) => {
   e.preventDefault();
   document.getElementById("myForm").reset();
 });
-submitBtn.addEventListener("click", (e) => {
+submitBtn.addEventListener("submit", (e) => {
   e.preventDefault();
   let brand = document.querySelector(".brand").value;
   let model = document.querySelector(".model").value;

@@ -137,11 +137,19 @@ MongoClient.connect("mongodb://localhost:27017/carsDB", {
     });
     app.post("/search", (req, res) => {
       karsCollection
-        .find(req.body)
+        .find({
+          brand: req.body.brand,
+          model: req.body.model,
+          variant: req.body.variant,
+        })
         .toArray()
         .then((results) => {
-          res.redirect("/");
-          console.log(results);
+          if (results.length !== 0) {
+            console.log(results);
+            res.redirect("/");
+          } else {
+            res.send("hi");
+          }
         })
         .catch((error) => console.error(error));
     });
