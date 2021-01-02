@@ -13,11 +13,11 @@
 <body>
 
 <div class="container mt-5">
-<form action="/cars" method="POST" class="form-inline">
+<form action="/cars" method="POST" class="form-inline" >
  
    <div>
     <input
-        type="brand"
+        type="brand text"
         name="brand"
         class="form-select mb-2 mr-sm-2 brand"
         placeholder="select brand"
@@ -96,13 +96,8 @@
       <% } %>
     </ul>
 </section>
-<section class="addedCar hidden">
-  
-  <%let j=cars.length %>
-  <p>"brand" :"<span><%= cars[j-1].brand %></span>"</p>
-  <p>"model" :"<span><%= cars[j-1].model %></span>"</p>
-  <p>"variant" :"<span><%= cars[j-1].variant %></span>"</p>
- 
+<section class="addedCar ">
+
 </section>
     <script src="/main.js"></script>
   </body>
