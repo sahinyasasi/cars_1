@@ -15,6 +15,10 @@ MongoClient.connect("mongodb://localhost:27017/carsDB", {
     console.log("Connected to Database");
     const db = client.db("kars");
     const karsCollection = db.collection("cars");
+    const arr = [];
+    for (let i = 0; i < karsCollection.length; i++) {
+      arr.push(karsCollection[i].brand);
+    }
 
     app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -40,10 +44,24 @@ MongoClient.connect("mongodb://localhost:27017/carsDB", {
         .then((results) => {
           if (results.length !== 0) {
             karsCollection
-              .insertOne(req.body)
-              .then((result) => {
-                res.redirect("/");
-                console.log(results);
+              .find({
+                brand: req.body.brand,
+                model: req.body.model,
+                variant: req.body.variant,
+              })
+              .toArray()
+              .then((results) => {
+                if (results.length === 0) {
+                  karsCollection
+                    .insertOne(req.body)
+                    .then((result) => {
+                      res.redirect("/");
+                      console.log(results);
+                    })
+                    .catch((error) => console.error(error));
+                } else {
+                  res.redirect("/");
+                }
               })
               .catch((error) => console.error(error));
           } else {
@@ -60,10 +78,24 @@ MongoClient.connect("mongodb://localhost:27017/carsDB", {
         .then((results) => {
           if (results.length !== 0) {
             karsCollection
-              .insertOne(req.body)
-              .then((result) => {
-                res.redirect("/");
-                console.log(results);
+              .find({
+                brand: req.body.brand,
+                model: req.body.model,
+                variant: req.body.variant,
+              })
+              .toArray()
+              .then((results) => {
+                if (results.length === 0) {
+                  karsCollection
+                    .insertOne(req.body)
+                    .then((result) => {
+                      res.redirect("/");
+                      console.log(results);
+                    })
+                    .catch((error) => console.error(error));
+                } else {
+                  res.redirect("/");
+                }
               })
               .catch((error) => console.error(error));
           } else {
