@@ -15,10 +15,25 @@ update1.addEventListener("submit", (e) => {
     "beforeEnd",
     `<p>brand :<span>${brand}</span></p><p>model :<span>${model}</span></p><p>variant :<span>${variant}</span></p>`
   );
+  document.getElementById("myForm").reset();
 });
 update2.addEventListener("click", () => {
   addedCar.classList.remove("hidden");
+  document.getElementById("myForm").reset();
 });
 update3.addEventListener("click", () => {
   addedCar.classList.remove("hidden");
+  document.getElementById("myForm").reset();
+});
+submitBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  let brand = document.querySelector(".brand").value;
+  let model = document.querySelector(".model").value;
+  let variant = document.querySelector(".variant").value;
+  console.log(brand);
+  addedCar.insertAdjacentHTML(
+    "beforeEnd",
+    `<p>brand :<span>${brand}</span></p><p>model :<span>${model}</span></p><p>variant :<span>${variant}</span></p>`
+  );
+  document.getElementById("myForm").reset();
 });
