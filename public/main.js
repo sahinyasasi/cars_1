@@ -17,12 +17,12 @@ update1.addEventListener("submit", (e) => {
   );
   document.getElementById("myForm").reset();
 });
-update2.addEventListener("click", () => {
-  addedCar.classList.remove("hidden");
+update2.addEventListener("submit", (e) => {
+  e.preventDefault();
   document.getElementById("myForm").reset();
 });
-update3.addEventListener("click", () => {
-  addedCar.classList.remove("hidden");
+update3.addEventListener("submit", (e) => {
+  e.preventDefault();
   document.getElementById("myForm").reset();
 });
 submitBtn.addEventListener("click", (e) => {
