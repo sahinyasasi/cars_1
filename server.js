@@ -55,8 +55,11 @@ MongoClient.connect("mongodb://localhost:27017/carsDB", {
                   karsCollection
                     .insertOne(req.body)
                     .then((result) => {
-                      res.redirect("/");
-                      console.log(results);
+                      res.render("index.ejs", {
+                        cars: results,
+                        success: "Added variant succesfully",
+                        danger: "",
+                      });
                     })
                     .catch((error) => console.error(error));
                 } else {
@@ -97,8 +100,11 @@ MongoClient.connect("mongodb://localhost:27017/carsDB", {
                   karsCollection
                     .insertOne(req.body)
                     .then((result) => {
-                      res.redirect("/");
-                      console.log(results);
+                      res.render("index.ejs", {
+                        cars: results,
+                        success: "Added model succesfully",
+                        danger: "",
+                      });
                     })
                     .catch((error) => console.error(error));
                 } else {
