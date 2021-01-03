@@ -11,10 +11,19 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+  <%if(danger!=""){%>
+  <div class="alert alert-danger" role="alert">
+    <strong>Result:</strong><%= danger%>
+  </div>
+  <%}%>
+  <%if(success!=""){%>
+  <div class="alert alert-success" role="alert">
+    <strong>Result:</strong><%= success%>
+  </div>
+  <%}%>
 <div class="container mt-5">
 <form action="/cars" method="POST" class="form-inline" id="myForm" >
- 
+  
    <div>
     <input
         type="brand text"

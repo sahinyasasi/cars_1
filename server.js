@@ -27,7 +27,7 @@ MongoClient.connect("mongodb://localhost:27017/carsDB", {
         .find()
         .toArray()
         .then((results) => {
-          res.render("index.ejs", { cars: results });
+          res.render("index.ejs", { cars: results, success: "", danger: "" });
         })
         .catch((error) => console.error(error));
       // Note: __dirname is the current directory you're in. Try logging it and see what you get!
@@ -60,12 +60,20 @@ MongoClient.connect("mongodb://localhost:27017/carsDB", {
                     })
                     .catch((error) => console.error(error));
                 } else {
-                  res.redirect("/");
+                  res.render("index.ejs", {
+                    cars: results,
+                    success: "",
+                    danger: " already exists",
+                  });
                 }
               })
               .catch((error) => console.error(error));
           } else {
-            res.redirect("/");
+            res.render("index.ejs", {
+              cars: results,
+              success: "",
+              danger: " Does not found",
+            });
           }
         })
         .catch((error) => console.error(error));
@@ -94,12 +102,20 @@ MongoClient.connect("mongodb://localhost:27017/carsDB", {
                     })
                     .catch((error) => console.error(error));
                 } else {
-                  res.redirect("/");
+                  res.render("index.ejs", {
+                    cars: results,
+                    success: "",
+                    danger: " Already exists",
+                  });
                 }
               })
               .catch((error) => console.error(error));
           } else {
-            res.redirect("/");
+            res.render("index.ejs", {
+              cars: results,
+              success: "",
+              danger: "Brand does not found",
+            });
           }
         })
         .catch((error) => console.error(error));
@@ -116,13 +132,20 @@ MongoClient.connect("mongodb://localhost:27017/carsDB", {
           if (results.length === 0) {
             karsCollection
               .insertOne(req.body)
-              .then((result) => {
-                res.redirect("/");
-                console.log(results);
+              .then((results) => {
+                res.render("index.ejs", {
+                  cars: results,
+                  success: "brand added successfully",
+                  danger: "",
+                });
               })
               .catch((error) => console.error(error));
           } else {
-            res.redirect("/");
+            res.render("index.ejs", {
+              cars: results,
+              danger: "enter correct details",
+              success: "",
+            });
           }
         })
         .catch((error) => console.error(error));
@@ -146,9 +169,17 @@ MongoClient.connect("mongodb://localhost:27017/carsDB", {
         .then((results) => {
           if (results.length !== 0) {
             console.log(results);
-            res.redirect("/");
+            res.render("index.ejs", {
+              cars: results,
+              success: "found successfully",
+              danger: "",
+            });
           } else {
-            res.send("hi");
+            res.render("index.ejs", {
+              cars: results,
+              danger: "not found",
+              success: "",
+            });
           }
         })
         .catch((error) => console.error(error));
