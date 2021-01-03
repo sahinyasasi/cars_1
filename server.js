@@ -15,10 +15,6 @@ MongoClient.connect("mongodb://localhost:27017/carsDB", {
     console.log("Connected to Database");
     const db = client.db("kars");
     const karsCollection = db.collection("cars");
-    const arr = [];
-    for (let i = 0; i < karsCollection.length; i++) {
-      arr.push(karsCollection[i].brand);
-    }
 
     app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -57,7 +53,7 @@ MongoClient.connect("mongodb://localhost:27017/carsDB", {
                     .then((result) => {
                       res.render("index.ejs", {
                         cars: results,
-                        success: "Added variant succesfully",
+                        success: " Added variant succesfully",
                         danger: "",
                       });
                     })
@@ -102,7 +98,7 @@ MongoClient.connect("mongodb://localhost:27017/carsDB", {
                     .then((result) => {
                       res.render("index.ejs", {
                         cars: results,
-                        success: "Added model succesfully",
+                        success: " Added model succesfully",
                         danger: "",
                       });
                     })
@@ -120,7 +116,7 @@ MongoClient.connect("mongodb://localhost:27017/carsDB", {
             res.render("index.ejs", {
               cars: results,
               success: "",
-              danger: "Brand does not found",
+              danger: " Brand does not found",
             });
           }
         })
@@ -141,7 +137,7 @@ MongoClient.connect("mongodb://localhost:27017/carsDB", {
               .then((results) => {
                 res.render("index.ejs", {
                   cars: results,
-                  success: "brand added successfully",
+                  success: " brand added successfully",
                   danger: "",
                 });
               })
@@ -149,7 +145,7 @@ MongoClient.connect("mongodb://localhost:27017/carsDB", {
           } else {
             res.render("index.ejs", {
               cars: results,
-              danger: "enter correct details",
+              danger: "  enter correct details",
               success: "",
             });
           }
@@ -177,13 +173,13 @@ MongoClient.connect("mongodb://localhost:27017/carsDB", {
             console.log(results);
             res.render("index.ejs", {
               cars: results,
-              success: "found successfully",
+              success: " found successfully",
               danger: "",
             });
           } else {
             res.render("index.ejs", {
               cars: results,
-              danger: "not found",
+              danger: " not found",
               success: "",
             });
           }
